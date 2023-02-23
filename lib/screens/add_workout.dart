@@ -17,6 +17,20 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
     super.initState();
   }
 
+  void nextPage() {
+    _pageController.nextPage(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void prevPage() {
+    _pageController.previousPage(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
+
   final workoutNames = ["Push", "Pull", "Legs"];
 
   @override
@@ -25,6 +39,25 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
         appBar: AppBar(
           title: const Text("New Workout"),
         ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FloatingActionButton(
+              heroTag: 'prevBtn',
+              onPressed: prevPage,
+              child: const Icon(Icons.chevron_left),
+            ),
+            const SizedBox(width: 40),
+            DotIndicator(controller: _pageController, pageCount: 3),
+            const SizedBox(width: 40),
+            FloatingActionButton(
+              heroTag: 'mainBtn',
+              onPressed: nextPage,
+              child: const Icon(Icons.chevron_right),
+            ),
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Stack(
           children: [
             PageView(
@@ -39,7 +72,7 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(50, 0, 50, 15),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: nextPage,
                           child: Text(workoutNames[index]),
                         ),
                       );
@@ -51,12 +84,6 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                 Text("Hello world"),
               ],
             ),
-            Positioned(
-              right: 0,
-              left: 0,
-              bottom: 30,
-              child: DotIndicator(controller: _pageController, pageCount: 3),
-            )
           ],
         ));
   }

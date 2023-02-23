@@ -39,9 +39,11 @@ class _DotIndicatorState extends State<DotIndicator> {
           ),
         ),
       ));
-      dots.add(const SizedBox(
-        width: 10,
-      ));
+      if (i != widget.pageCount - 1) {
+        dots.add(const SizedBox(
+          width: 10,
+        ));
+      }
     }
 
     return Row(

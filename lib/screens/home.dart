@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
         children: const [CalendarTab(), WorkoutTab()],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'mainBtn',
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
@@ -43,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen>
         items: const [
           BottomNavigationBarItem(
             label: 'Calendar',
-            icon: Icon(Icons.calendar_view_day),
+            icon: Icon(Icons.calendar_month),
           ),
           BottomNavigationBarItem(
             label: 'History',
