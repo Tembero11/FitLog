@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_diary/screens/add_workout.dart';
 import 'package:gym_diary/screens/tabs/calendar.dart';
 import 'package:gym_diary/screens/tabs/workouts.dart';
+import 'package:gym_diary/utils/data_manager.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +14,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   int tabIndex = 1;
+
+  final dataManager = DataManager();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

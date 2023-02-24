@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 
 class DotIndicator extends StatefulWidget {
   final PageController controller;
@@ -13,7 +14,7 @@ class DotIndicator extends StatefulWidget {
 class _DotIndicatorState extends State<DotIndicator> {
   @override
   void initState() {
-    widget.controller.addListener(() {
+    widget.controller.addListener(() async {
       setState(() {});
     });
     super.initState();
