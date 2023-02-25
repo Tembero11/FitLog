@@ -1,9 +1,6 @@
-import 'dart:convert';
+import 'package:gym_diary/utils/answer.dart';
 
-enum QuestionType {
-  text,
-  multipleChoice,
-}
+enum QuestionType { number, string }
 
 class Question {
   final String question;
@@ -14,8 +11,9 @@ class Question {
       required this.jsonKey,
       required this.questionType});
 
-  @override
-  String toString() {
-    return jsonEncode({question, jsonKey, questionType});
+  isValid(Answer answer) {
+    if (answer.key != jsonKey) return false;
+
+    
   }
 }

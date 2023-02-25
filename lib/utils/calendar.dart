@@ -1,18 +1,23 @@
 import 'dart:collection';
 
-class Calendar {
-  late SplayTreeMap years;
-  Calendar({required Map data}) {
-    years = SplayTreeMap.from(data["calendar"], (a, b) {
-      return int.parse(a) - int.parse(b);
-    });
-  }
+abstract class Base<K, V> {
+  HashMap<K, V> data;
+  Base({required this.data});
 
-  getYear(int year) {
-    if (!years.containsKey(year.toString())) return null;
+  // ignore: unused_element
+  _get(K key) {
+    if (!data.containsKey(key)) return null;
+    return data[key];
   }
 }
 
-class Year {
-  
+class Calendar extends Base<String, Object> {
+  Calendar({required super.data});
+
+  getDate(int day, int month, int year) {
+    final original = _get('$day.$month.$year');
+    if (!original) return null;
+
+    
+  }
 }
