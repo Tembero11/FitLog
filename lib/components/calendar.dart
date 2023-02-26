@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_diary/screens/workout.dart';
+import 'package:gym_diary/utils/extra_date_utils.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({super.key});
@@ -10,29 +11,7 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   static const startYear = 2022;
-  static const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-  static const weekdayNames = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
+
   late final itemCount;
   @override
   void initState() {
@@ -50,7 +29,7 @@ class _CalendarState extends State<Calendar> {
           child: GridView.count(
             crossAxisCount: 7,
             shrinkWrap: true,
-            children: weekdayNames
+            children: ExtraDateUtils.weekdayNames
                 .map((day) => Center(
                         child: Text(
                       day[0],
@@ -111,7 +90,7 @@ class _CalendarState extends State<Calendar> {
                 children: [
                   const SizedBox(height: 30),
                   Text(
-                    monthNames[monthIndex],
+                    ExtraDateUtils.getMonthName(monthIndex),
                     style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
