@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_diary/components/calendar.dart';
 
 class CalendarTab extends StatefulWidget {
   const CalendarTab({super.key});
@@ -10,6 +11,6 @@ class CalendarTab extends StatefulWidget {
 class _CalendarTabState extends State<CalendarTab> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Calendar Tab");
+    return const Calendar();
   }
 }

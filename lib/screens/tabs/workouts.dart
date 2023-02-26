@@ -12,6 +12,17 @@ class WorkoutTab extends StatefulWidget {
 class _WorkoutTabState extends State<WorkoutTab> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Workouts tab");
+    return ListView(
+      children: const [
+        SizedBox(height: 20),
+        Text(
+          "Recent Workouts",
+          style: TextStyle(
+            fontSize: 35,
+            fontWeight: FontWeight.bold,
+          ),
+        )
+      ],
+    );
   }
 }

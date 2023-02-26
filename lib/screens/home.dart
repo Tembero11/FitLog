@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gym_diary/screens/add_workout.dart';
 import 'package:gym_diary/screens/tabs/calendar.dart';
 import 'package:gym_diary/screens/tabs/workouts.dart';
@@ -26,11 +27,20 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gym Diary"),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Theme.of(context).primaryColor,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        ),
+        elevation: 0,
+        centerTitle: true,
+        title: const Text("FitLog"),
       ),
-      body: IndexedStack(
-        index: tabIndex,
-        children: const [CalendarTab(), WorkoutTab()],
+      body: SafeArea(
+        child: IndexedStack(
+          index: tabIndex,
+          children: const [CalendarTab(), WorkoutTab()],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'mainBtn',
