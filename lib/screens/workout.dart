@@ -19,10 +19,10 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.green,
+        statusBarColor: Colors.purple,
       ),
       child: Material(
-        color: Colors.green,
+        color: Colors.purple,
         child: Column(
           children: [
             Flexible(
