@@ -186,7 +186,7 @@ class _CalendarAppBarState extends State<CalendarAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.primary,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

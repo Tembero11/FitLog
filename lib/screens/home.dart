@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:gym_diary/screens/add_workout.dart';
 import 'package:gym_diary/screens/tabs/calendar.dart';
 import 'package:gym_diary/screens/tabs/workouts.dart';
-import 'package:gym_diary/utils/data_manager.dart';
+import 'package:gym_diary/utils/data/month_file.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,10 +16,14 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   int tabIndex = 1;
 
-  final dataManager = DataManager();
-
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black.withOpacity(0.002),
+      ),
+    );
     super.initState();
   }
 
@@ -42,9 +46,17 @@ class _HomeScreenState extends State<HomeScreen>
           children: const [CalendarTab(), WorkoutTab()],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: tabIndex == 0 ? FloatingActionButton(
+        onPressed: () {},
         heroTag: 'mainBtn',
         child: const Icon(Icons.add),
+      ) : FloatingActionButton.extended(
+        heroTag: 'mainBtn',
+        label: tabIndex == 0 ? const Text("New") : const Text("New workout"),
+        icon: const Icon(Icons.add),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15)
+        ),
         onPressed: () {
           Navigator.push(
               context,
