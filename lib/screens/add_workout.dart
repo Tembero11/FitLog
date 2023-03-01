@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_diary/components/common/dot_indicator.dart';
+import 'package:gym_diary/components/common/workout_slider.dart';
 
 class AddWorkoutScreen extends StatefulWidget {
   const AddWorkoutScreen({super.key});
@@ -79,7 +80,9 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                     }),
                   ),
                 ),
-                Text("Hello world"),
+                const Center(
+                  child: WorkoutSlider(),
+                ),
                 Text("Hello world"),
                 Text("Hello world"),
               ],
