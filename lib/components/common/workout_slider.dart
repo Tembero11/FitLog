@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 
 class WorkoutSlider extends StatefulWidget {
-  const WorkoutSlider({super.key});
+  final Color? activeTrackColor;
+  final Color? inactiveTrackColor;
+  final Color? divisionColor;
+  const WorkoutSlider({super.key, this.activeTrackColor, this.inactiveTrackColor, this.divisionColor});
 
   @override
   State<WorkoutSlider> createState() => _SliderWorkoutState();
@@ -20,7 +25,7 @@ class _SliderWorkoutState extends State<WorkoutSlider> with SingleTickerProvider
   late AnimationController _controller;
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 40));
+    _controller = AnimationController(vsync: this);
 
     _controller.addListener(() {
       setState(() {
@@ -79,12 +84,19 @@ class _SliderWorkoutState extends State<WorkoutSlider> with SingleTickerProvider
           },
           onVerticalDragEnd: (details) {
             setState(() {
-              _controller.animateTo(_getClosestDivision(currentValue), duration: const Duration(milliseconds: 200), curve: Curves.linear);
+              _controller.animateTo(_getClosestDivision(currentValue), duration: const Duration(milliseconds: 100), curve: Curves.linear);
             });
             _divisionVibrate();
           },
           child: CustomPaint(
-            painter: SliderPainter(currentValue: currentValue, divisions: divisions),
+            painter: SliderPainter(
+              currentValue: currentValue,
+              divisions: divisions,
+              
+              inactiveTrackColor: widget.inactiveTrackColor,
+              activeTrackColor: widget.activeTrackColor,
+              divisionColor: widget.divisionColor
+            ),
         ),
       ),
       ),
@@ -95,14 +107,23 @@ class _SliderWorkoutState extends State<WorkoutSlider> with SingleTickerProvider
 class SliderPainter extends CustomPainter {
   double currentValue;
   int divisions;
-  SliderPainter({required this.currentValue, this.divisions = 5});
+  final Color? activeTrackColor;
+  final Color? inactiveTrackColor;
+  final Color? divisionColor;
+  SliderPainter({
+    required this.currentValue,
+    this.divisions = 5,
+    this.inactiveTrackColor,
+    this.activeTrackColor,
+    this.divisionColor
+    });
 
   @override
   void paint(Canvas canvas, Size size) {
     // Paints
-    var inactiveTrackPaint = Paint()..color = Colors.grey.shade300;
-    var activeTrackPaint = Paint()..color = Colors.grey.shade200;
-    var divisionPaint = Paint()..color = Colors.grey.shade400;
+    var inactiveTrackPaint = Paint()..color = inactiveTrackColor != null ? inactiveTrackColor! : Colors.grey.shade300;
+    var activeTrackPaint = Paint()..color = activeTrackColor != null ? activeTrackColor! : Colors.grey.shade200;
+    var divisionPaint = Paint()..color = divisionColor != null ? divisionColor! : Colors.grey.shade400;
 
     var centerX = size.width / 2;
 
