@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gym_diary/screens/add_workout.dart';
 import 'package:gym_diary/screens/tabs/calendar.dart';
+import 'package:gym_diary/screens/tabs/profile.dart';
 import 'package:gym_diary/screens/tabs/workouts.dart';
 import 'package:gym_diary/utils/data/month_file.dart';
 
@@ -43,10 +44,10 @@ class _HomeScreenState extends State<HomeScreen>
       body: SafeArea(
         child: IndexedStack(
           index: tabIndex,
-          children: const [CalendarTab(), WorkoutTab()],
+          children: const [CalendarTab(), WorkoutTab(), ProfileTab()],
         ),
       ),
-      floatingActionButton: tabIndex == 0 ? FloatingActionButton(
+      floatingActionButton: tabIndex != 2 ? (tabIndex == 0 ? FloatingActionButton(
         onPressed: () {},
         heroTag: 'mainBtn',
         child: const Icon(Icons.add),
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen>
               MaterialPageRoute(
                   builder: (context) => const AddWorkoutScreen()));
         },
-      ),
+      )) : null,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: tabIndex,
         onTap: (tab) {
@@ -77,7 +78,11 @@ class _HomeScreenState extends State<HomeScreen>
             icon: Icon(Icons.calendar_month),
           ),
           BottomNavigationBarItem(
-            label: 'History',
+            label: 'Recent Activity',
+            icon: Icon(Icons.history),
+          ),
+          BottomNavigationBarItem(
+            label: 'Profile',
             icon: Icon(Icons.person),
           )
         ],
